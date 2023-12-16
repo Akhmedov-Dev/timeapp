@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            padding: 0%;
+            margin: 0%;
+            font-family: sans-serif;
+            box-sizing: border-box;
+        }
+
+        .back-container {
+            width: 100%;
+            min-height: 100vh;
+            background-color: lightgray;
+            color: white;
+            position: relative;
+        }
+
+        .container {
+            width: 800px;
+            height: 180px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .back-container_container_div {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(100px);
+        }
+
+        .container::before {
+            content: '';
+            width: 180px;
+            height: 180px;
+            background: black;
+            border-radius: 5px;
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            z-index: -1;
+        }
+
+        .container::after {
+            content: '';
+            width: 180px;
+            height: 180px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            right: -30px;
+            bottom: -50px;
+            z-index: -1;
+        }
+
+        .back-container_container_div span {
+            font-size: 80px;
+            width: 110px;
+            display: inline-block;
+            text-align: center;
+            position: relative;
+        }
+    </style>
+    <title>Time App</title>
+</head>
+
+<body>
+    <div class="back-container">
+        <div class="container">
+            <div class="back-container_container_div">
+                <span id="hrs"></span>
+                <span>:</span>
+                <span id="min"></span>
+                <span>:</span>
+                <span id="sec"></span>
+            </div>
+        </div>
+    </div>
+    <script>
+        let hour = document.getElementById("hrs")
+        let min = document.getElementById("min")
+        let second = document.getElementById("sec")
+        setInterval(() => {
+            let date = new Date();
+            hour.innerHTML = (date.getHours() < 10 ? "0" : "") + date.getHours();
+            min.innerHTML = (date.getMinutes() < 10 ? "0" : "") + date.getMinutes();
+            second.innerHTML = (date.getSeconds() < 10 ? "0" : "") + date.getSeconds();
+        }, 1000)
+    </script>
+</body>
+
+</html>
